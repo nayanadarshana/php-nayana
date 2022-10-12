@@ -75,6 +75,7 @@ class SalesTeamController extends Controller
         return redirect('sales-team')->with($this->saleTeamInterface->delete($id));
     }
 
+    //email validation for create and update
     public function isEmailUnique(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -87,6 +88,7 @@ class SalesTeamController extends Controller
         }
     }
 
+    //get data for datatable
     public function getSalesTeamData(Request $request)
     {
         return response()->json($this->saleTeamInterface->index($request));

@@ -37,6 +37,7 @@ class SaleTeamRepository implements SaleTeamInterface
     {
         try {
             $salePersonObj = new SaleTeam();
+            //send object to the common save function
             $this->storeData($request, $salePersonObj);
             return ['message' => 'Sales Team Member Added Successfully'];
         } catch (Exception $exception) {
@@ -44,6 +45,7 @@ class SaleTeamRepository implements SaleTeamInterface
         }
     }
 
+    //Data save and update write as a common function
     public function storeData(Request $request, $salePersonObj)
     {
         try {
@@ -62,7 +64,9 @@ class SaleTeamRepository implements SaleTeamInterface
     public function update(Request $request, $id)
     {
         try {
+            //edit use as a common function
             $salePersonObj = $this->edit($id);
+            //send data to common save function
             $this->storeData($request, $salePersonObj);
             return ['message' => 'Sales Team Member Updated Successfully'];
         } catch (Exception $exception) {
@@ -82,7 +86,7 @@ class SaleTeamRepository implements SaleTeamInterface
     public function delete($id)
     {
         try {
-            $salePersonObj = SaleTeam::find($id);
+            $salePersonObj = $this->edit($id);
             $salePersonObj->delete();
             return ['message' => 'Sales Team Member Deleted Successfully'];
         } catch (Exception $exception) {
